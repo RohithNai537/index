@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Pricing</title>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #a5b4fc;
+            --background-color-light: #ffffff;
+            --text-color-light: #1f2937;
+            --background-color-dark: #0f172a;
+            --text-color-dark: #e2e8f0;
+            --section-background-light: #f8fafc;
+            --section-background-dark: #1e293b;
+            --border-color-light: #e2e8f0;
+            --border-color-dark: #334155;
+            --highlight-color-light: #000000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem; 
+            line-height: 1.8; 
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        body.light-mode {
+            background-color: var(--background-color-light);
+            color: var(--text-color-light);
+        }
+
+        body.dark-mode {
+            background-color: var(--background-color-dark);
+            color: var(--text-color-dark);
+        }
+
+        section {
+            background-color: var(--section-background-dark);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color-dark);
+            width: 80%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            text-align: left;
+            position: relative;
+        }
+
+        body.light-mode section {
+            background-color: var(--section-background-light);
+            border: 1px solid var(--border-color-light);
+        }
+
+        h2, h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem; 
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        th, td {
+            padding: 1.1rem; 
+            text-align: left;
+            border-bottom: 2px solid var(--border-color-dark);
+            font-size: 1rem; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        th:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            transform: scaleX(1);
+            transform-origin: bottom left;
+            transition: transform 0.3s;
+        }
+
+        body.light-mode th, body.light-mode td {
+            border-color: var(--border-color-light);
+        }
+
+        td {
+            background-color: var(--section-background-light);
+            color: var(--text-color-light);
+        }
+
+        body.dark-mode td {
+            background-color: var(--section-background-dark);
+            color: var(--text-color-dark);
+        }
+
+        tbody tr:hover {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+        }
+
+        tbody tr:nth-child(even) {
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 75%);
+            background-size: 400% 400%;
+        }
+
+        body.light-mode tbody tr:nth-child(even) td {
+            background-color: rgba(165, 180, 252, 0.2);
+            color: var(--highlight-color-light);
+        }
+
+        #toggle-mode {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.7rem; 
+            color: #f99027;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 10;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        #toggle-mode:hover {
+            transform: scale(1.1);
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 1rem;
+            }
+
+            th, td {
+                padding: 0.75rem; 
+            }
+
+            #toggle-mode {
+                font-size: 1.3rem; 
+                top: 0.25rem;
+                right: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <section id="pricing" aria-labelledby="pricing-heading">
+        <h2 id="pricing-heading">API Pricing</h2>
+        <p>Our API pricing is based on the model used and the number of tokens processed. Here's a breakdown of the costs:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">API</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Price per 1K tokens</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>OpenAI</td>
+                    <td>GPT-3.5</td>
+                    <td>$0.002</td>
+                </tr>
+                <tr>
+                    <td>OpenAI</td>
+                    <td>GPT-4</td>
+                    <td>$0.03</td>
+                </tr>
+                <tr>
+                    <td>Together AI</td>
+                    <td>Llama-2-70b</td>
+                    <td>$0.0008</td>
+                </tr>
+                <tr>
+                    <td>Together AI</td>
+                    <td>Llama-2-13b</td>
+                    <td>$0.0006</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Token Estimation</h3>
+        <p>On average, 1 token is approximately 4 characters or 0.75 words. For precise pricing, we recommend using our token calculator tool.</p>
+        <h3>Billing</h3>
+        <p>You will only be charged for the tokens used in generating the book. The API tracks token usage and bills accordingly. Detailed usage reports are available in your account dashboard.</p>
+
+        <!-- Toggle Button -->
+        <button id="toggle-mode" aria-label="Toggle dark mode">🌙</button>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleModeButton = document.getElementById('toggle-mode');
+            const moonIcon = '🌙';
+            const sunIcon = '☀';
+
+            toggleModeButton.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                document.body.classList.toggle('light-mode');
+                toggleModeButton.textContent = document.body.classList.contains('dark-mode') ? moonIcon : sunIcon;
+            });
+        });
+    </script>
+</body>
+</html>
